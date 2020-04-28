@@ -1,0 +1,9 @@
+[submodule "lib/inspect"]
+	path = lib/inspect
+	url = git@github.com:kikito/inspect.lua.git
+[submodule "lib/middleclass"]
+	path = lib/middleclass
+	url = git@github.com:kikito/middleclass.git
+[submodule "lib/push"]
+	path = lib/push
+	url = git@github.com:Ulydev/push.git
