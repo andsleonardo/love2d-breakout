@@ -1,13 +1,31 @@
 local G = love.graphics
 
-return function()
-  local ui = {}
+local ui = {}
 
-  ui.fonts = {
-    title = G.newFont('assets/fonts/1980.ttf', 250),
-    menu = G.newFont('assets/fonts/1980.ttf', 80),
-    large = G.newFont('assets/fonts/1980.ttf', 150)
-  }
-
-  return ui
+function ui:_load()
+  ui:_loadFonts()
+  ui:_loadTexts()
+  return self
 end
+
+function ui:_loadFonts()
+  self.fonts = {
+    title = G.newFont('assets/fonts/1980.ttf', 85),
+    menu = G.newFont('assets/fonts/1980.ttf', 40),
+    large = G.newFont('assets/fonts/1980.ttf', 60)
+  }
+end
+
+function ui:_loadTexts()
+  self.texts = {
+    titleScreen = {
+      gameTitle = G.newText(self.fonts.title, 'BREAKOUT'),
+      menu = {
+        startGame = G.newText(self.fonts.menu, 'START GAME'),
+        highScores = G.newText(self.fonts.menu, 'HIGH SCORES'),
+      }
+    }
+  }
+end
+
+return ui:_load()

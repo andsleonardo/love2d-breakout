@@ -6,46 +6,58 @@ local push = gPush
 local tbl = gTbl
 local ui = gUi
 
+local BaseState = require('src/game/states/BaseState')
 local Button = require('src/ui/components/Button')
 local Selector = require('src/ui/components/Selector')
 
-local BaseState = require('src/game/states/BaseState')
-local TitleScreenState = class('TitleScreenState', BaseState)
+local this = class('TitleScreenState', BaseState)
+local texts = ui.texts.titleScreen
 
-function TitleScreenState:initialize(handler)
+function this:initialize(handler)
   BaseState:initialize(handler)
 
-  local game = self.handler
+  self.startMenu = self:_loadStartMenu()
+end
 
-  self.startMenu = Selector({
-    Button('START GAME', 0, 700, {
-      onClick = function()
-        game:goTo('paddleSelection')
-      end
-    }),
-    Button('HIGH SCORES', 0, 780),
+function this:_loadStartMenu()
+  local menuOptions = texts.menu
+  local startGameOption = menuOptions.startGame
+  local highScoresOption = menuOptions.highScores
+
+  return Selector({
+    Button(
+      startGameOption,
+      push:getWidth()/2 - startGameOption:getWidth()/2,
+      push:getHeight() - 200,
+      {
+        onClick = function()
+          self.handler:goTo('paddleSelection')
+        end
+      }
+    ),
+    Button(
+      highScoresOption,
+      push:getWidth()/2 - highScoresOption:getWidth()/2,
+      push:getHeight() - 200 + startGameOption:getHeight()
+    )
   })
 end
 
-function TitleScreenState:update(dt)
-  if K.wasKeyPressed('down') then
-    self.startMenu:nextOption()
-  end
-
-  if K.wasKeyPressed('up') then
-    self.startMenu:previousOption()
-  end
-
-  if K.wasKeyPressed('return') then
-    self.startMenu:currentOption():onClick()
-  end
+function this:update()
+  if K.wasPressed('down') then self.startMenu:nextOption() end
+  if K.wasPressed('up') then self.startMenu:previousOption() end
 end
 
-function TitleScreenState:render()
-  G.setFont(ui.fonts.title)
-  G.printf('BREAKOUT', 0, 200, G:getWidth(), "center")
+function this:render()
+  local gameTitle = texts.gameTitle
+
+  G.draw(
+    gameTitle,
+    push:getWidth()/2 - gameTitle:getWidth()/2,
+    100
+  )
 
   self.startMenu:render()
 end
 
-return TitleScreenState
+return this

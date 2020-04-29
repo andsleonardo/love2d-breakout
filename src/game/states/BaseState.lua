@@ -1,16 +1,14 @@
 local class = gClass
 
-local BaseState = class('BaseState')
+local this = class('BaseState')
 
-function BaseState:initialize(handler)
+function this:initialize(handler)
   self.handler = handler
-
-  return self
 end
 
-function BaseState:enter()end
-function BaseState:exit() end
-function BaseState:update(dt) end
-function BaseState:render() end
+function this:enter()end
+function this:exit() end
+function this:update(dt) end
+function this:render() end
 
-return BaseState
+return this

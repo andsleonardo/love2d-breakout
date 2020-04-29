@@ -1,18 +1,16 @@
 local G = love.graphics
 local ui = gUi
 
-return function(content, x, y, opts)
+return function(text, x, y, opts)
   local opts = opts or {}
 
   local button = {}
 
-  button.content = content
+  button.text = text
   button.x = x or 0
   button.y = y or 0
 
-  button.font = opts.font or ui.fonts.menu
   button.isHighlighted = opts.isHighlighted or false
-
   button.onClick = opts.onClick or function() end
 
   local function _resetColors()
@@ -28,9 +26,8 @@ return function(content, x, y, opts)
   end
 
   function button:render()
-    G.setFont(self.font)
     G.setColor(_getButtonColor(self))
-    G.printf(self.content, self.x, self.y, G:getWidth(), 'center')
+    G.draw(self.text, self.x, self.y)
 
     _resetColors()
   end
