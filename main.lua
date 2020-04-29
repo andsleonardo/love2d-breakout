@@ -9,27 +9,29 @@ local K = love.keyboard
 local W = love.window
 local push = gPush
 
-K.keyPresses = {}
+local game, background
 
-local background = G.newImage('assets/img/space-background.png')
+local function setupPush()
+  local settings = require('src/settings')
+  local gameDimensions = settings.window.gameDimensions
+  local gameWidth, gameHeight = unpack(gameDimensions)
 
-function love.keyboard.wasKeyPressed(key)
+  G.setDefaultFilter("nearest", "nearest")
+
+  push:setupScreen(gameWidth, gameHeight, 750, 900, {vsync = true})
+end
+
+function love.keyboard.wasPressed(key)
   return K.keyPresses[key]
 end
 
-local game = require('src/game')()
-local settings = require('src/settings')
-
-local function setupPush()
-  local gameDimensions = settings.window.gameDimensions
-  local gameWidth, gameHeight = unpack(gameDimensions)
-  local windowWidth, windowHeight = W.getDesktopDimensions()
-
-  push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = true})
-end
-
 function love.load()
+  K.keyPresses = {}
+
   setupPush()
+
+  game = require('src/game')
+  background = G.newImage('assets/img/space-background.png')
 end
 
 function love.update(dt)
@@ -38,8 +40,10 @@ function love.update(dt)
 end
 
 function love.draw()
+  push:start()
   G.draw(background, 0, 0)
   game:render()
+  push:finish()
 end
 
 function love.keypressed(key)

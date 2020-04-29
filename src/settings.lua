@@ -4,6 +4,6 @@ return {
     fullscreen = false,
     resizable = false,
     vsync = 1,
-    gameDimensions = {750, 900}
+    gameDimensions = {500, 600}
   }
 }
