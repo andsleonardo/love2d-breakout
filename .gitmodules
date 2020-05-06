@@ -7,3 +7,6 @@
 [submodule "lib/push"]
 	path = lib/push
 	url = git@github.com:Ulydev/push.git
+[submodule "lib/iffy"]
+	path = lib/iffy
+	url = git@github.com:YoungNeer/iffy.git
