@@ -28,17 +28,17 @@ function this:_loadStartMenu()
     Button(
       startGameOption,
       push:getWidth()/2 - startGameOption:getWidth()/2,
-      push:getHeight() - 200,
+      push:getHeight() - 125,
       {
         onClick = function()
-          self.handler:goTo('paddleSelection')
+          self.handler:goTo('playingState')
         end
       }
     ),
     Button(
       highScoresOption,
       push:getWidth()/2 - highScoresOption:getWidth()/2,
-      push:getHeight() - 200 + startGameOption:getHeight()
+      push:getHeight() - 125 + startGameOption:getHeight()
     )
   })
 end
@@ -46,6 +46,7 @@ end
 function this:update()
   if K.wasPressed('down') then self.startMenu:nextOption() end
   if K.wasPressed('up') then self.startMenu:previousOption() end
+  if K.wasPressed('return') then self.startMenu:currentOption():onClick() end
 end
 
 function this:render()
@@ -54,7 +55,7 @@ function this:render()
   G.draw(
     gameTitle,
     push:getWidth()/2 - gameTitle:getWidth()/2,
-    100
+    50
   )
 
   self.startMenu:render()

@@ -16,9 +16,7 @@ local function setupPush()
   local gameDimensions = settings.window.gameDimensions
   local gameWidth, gameHeight = unpack(gameDimensions)
 
-  G.setDefaultFilter("nearest", "nearest")
-
-  push:setupScreen(gameWidth, gameHeight, 750, 900, {vsync = true})
+  push:setupScreen(gameWidth, gameHeight, 800, 960, {vsync = true})
 end
 
 function love.keyboard.wasPressed(key)
@@ -26,6 +24,8 @@ function love.keyboard.wasPressed(key)
 end
 
 function love.load()
+  G.setDefaultFilter("nearest", "nearest")
+
   K.keyPresses = {}
 
   setupPush()

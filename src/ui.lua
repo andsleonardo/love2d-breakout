@@ -10,9 +10,9 @@ end
 
 function ui:_loadFonts()
   self.fonts = {
-    title = G.newFont('assets/fonts/1980.ttf', 85),
-    menu = G.newFont('assets/fonts/1980.ttf', 40),
-    large = G.newFont('assets/fonts/1980.ttf', 60)
+    title = G.newFont('assets/fonts/1980.ttf', 71.5),
+    menu = G.newFont('assets/fonts/1980.ttf', 32),
+    large = G.newFont('assets/fonts/1980.ttf', 42)
   }
 end
 
