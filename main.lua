@@ -1,9 +1,4 @@
-inspect = require('lib/inspect/inspect')
-gClass = require('lib/middleclass/middleclass')
-gIffy = require('lib/iffy/iffy')
-gPush = require('lib/push/push')
-gTbl = require('lib/tbl')
-gUi = require('src/ui')
+require('src/deps')
 
 local G = love.graphics
 local K = love.keyboard
