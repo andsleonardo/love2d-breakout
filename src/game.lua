@@ -1,12 +1,14 @@
 local FSMachina = require('lib/FSMachina')
 
 local TitleScreenState = require('src/game/states/TitleScreenState')
+local PlayingState = require('src/game/states/PlayingState')
 
 local game = {}
 
 function game:_load()
   self.stateMachine = FSMachina({
     titleScreen = function() return TitleScreenState(game) end,
+    playingState = function() return PlayingState(game) end,
   })
 
   self.stateMachine:change('titleScreen')
