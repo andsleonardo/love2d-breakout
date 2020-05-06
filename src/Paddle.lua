@@ -17,6 +17,8 @@ function this:initialize(x, y, opts)
   self.y = y or 0
   self.sx = opts.sx or 1
   self.sy = self.sx
+  self.width = this.width * self.sx
+  self.height = this.height * self.sy
   self.spriteName = 'bluePaddle'
 end
 
@@ -34,8 +36,8 @@ function this:update(dt)
   -- Collision with game window
   if self.x <= 0 then
     self.x = 0
-  elseif self.x + this.width >= push:getWidth() then
-    self.x = push:getWidth() - this.width
+  elseif self.x + self.width >= push:getWidth() then
+    self.x = push:getWidth() - self.width
   end
 end
 
