@@ -26,6 +26,8 @@ function this:update(dt)
   self.paddle:update(dt)
   self.ball:update(dt)
 
+  self.ball:collides(self.paddle)
+
   if K.wasPressed('backspace') then
     self.handler:goTo('titleScreen')
   end
