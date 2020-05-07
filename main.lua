@@ -26,6 +26,7 @@ function love.load()
   K.keyPresses = {}
 
   setupPush()
+  gUi = require('src/ui')
 
   game = require('src/game')
   background = G.newImage('assets/img/space-background.png')
