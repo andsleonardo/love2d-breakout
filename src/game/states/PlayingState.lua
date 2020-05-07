@@ -1,6 +1,7 @@
 local K = love.keyboard
 local class = gClass
 local push = gPush
+local triggr = gTriggr
 
 local Ball = require('src/Ball')
 local Paddle = require('src/Paddle')
@@ -20,6 +21,10 @@ function this:initialize(handler)
     push:getWidth()/2 - Ball.width/2,
     self.paddle.y - Ball.height
   )
+
+  triggr:register('ball:outOfBounds', function()
+    self.handler:goTo('serving')
+  end)
 end
 
 function this:update(dt)

@@ -1,6 +1,7 @@
 local class = gClass
 local iffy = gIffy
 local push = gPush
+local triggr = gTriggr
 
 local this = class('Ball')
 
@@ -34,6 +35,11 @@ function this:update(dt)
   -- collision with the top of the screen
   if self.y <= 0 then
     self.dy = -self.dy
+  end
+
+  -- ball below the screen
+  if self.y + self.height >= push:getHeight() then
+    triggr:dispatch('ball:outOfBounds')
   end
 end
 
