@@ -4,6 +4,7 @@ local G = love.graphics
 local K = love.keyboard
 local W = love.window
 local push = gPush
+local triggr = gTriggr
 
 local game, background
 
@@ -33,6 +34,7 @@ end
 function love.update(dt)
   game:update(dt)
   K.keyPresses = {}
+  triggr:consumeQueue()
 end
 
 function love.draw()
