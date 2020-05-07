@@ -45,9 +45,9 @@ end
 
 function this:collides(target)
   if self.y + self.height >= target.y and
-    self.y <= target.y + target.height and
-    self.x + self.width >= target.x and
-    self.x + self.width <= target.x + target.width
+    self.x > target.x and
+    self.x + self.width < target.x + target.width and
+    self.y < target.y
   then
     self.dy = -self.dy
   end
