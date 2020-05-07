@@ -31,7 +31,7 @@ function this:_loadStartMenu()
       push:getHeight() - 125,
       {
         onClick = function()
-          self.handler:goTo('playingState')
+          self.handler:goTo('serving')
         end
       }
     ),
